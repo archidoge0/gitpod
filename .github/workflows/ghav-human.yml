@@ -1,0 +1,18 @@
+"on":
+  push:
+    branches:
+      - ghav/dev/18036
+    paths:
+      - .ghav/human
+name: "ghav human: SpiceDB"
+jobs:
+  scan-repo:
+    runs-on: ubuntu-latest
+    name: Validate schema
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Validate SpiceDB schema
+        uses: authzed/action-spicedb-validate@v1.0.1
+        with:
+          validationfile: install/installer/pkg/components/spicedb/data/schema.yaml

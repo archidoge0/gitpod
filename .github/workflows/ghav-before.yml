@@ -1,0 +1,25 @@
+name: "ghav before: permissions"
+"on":
+  push:
+    branches:
+      - ghav/dev/18036
+    paths:
+      - .ghav/before
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: authzed/action-spicedb-validate@v1
+        with:
+          validationfile: install/installer/pkg/components/spicedb/data/schema.yaml
+  scan-repo:
+    runs-on: ubuntu-latest
+    name: Validate schema
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Validate SpiceDB schema
+        uses: authzed/action-spicedb-validate@v1.0.1
+        with:
+          validationfile: install/installer/pkg/components/spicedb/data/schema.yaml

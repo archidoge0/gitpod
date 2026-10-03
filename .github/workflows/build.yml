@@ -1,16 +1,6 @@
 name: Build
 on:
-  pull_request:
-    types: [ opened, edited ]
-  push:
   workflow_dispatch:
-    inputs:
-      recreate_vm:
-        required: true
-        type: string
-        description: "Whether to recreate the VM"
-        default: "false"
-
 jobs:
   configuration:
     name: Configure job parameters
